@@ -117505,6 +117505,7 @@ float round(float x) {
     function OHe() {
         return T.jsx(cHe, {
             children: T.jsxs("div", {
+                className: "autonomic-root",
                 style: {
                     position: "fixed",
                     inset: 0,
