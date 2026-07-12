@@ -12,6 +12,7 @@ const {
 const {
   SupabaseProvider, useAuth, useLiveQuery, useRpc, useEdgeFunction,
 } = window.MosaicData;
+import React from 'react';
 const { useState, useEffect, useMemo } = React;
 
 /* ============================================================= THEME ======= */
