@@ -1120,7 +1120,7 @@ export function ScreenRouter() {
 export function AutonomicPlatform() {
   return (
     <GameProvider>
-      <div style={{ position: 'fixed', inset: 0, display: 'flex', overflow: 'hidden', fontFamily: sans, color: PALETTE.hi, background: PALETTE.bg }}>
+      <div className="autonomic-root" style={{ position: 'fixed', inset: 0, display: 'flex', overflow: 'hidden', fontFamily: sans, color: PALETTE.hi, background: PALETTE.bg }}>
         <NavRail />
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
           <TopBar />
