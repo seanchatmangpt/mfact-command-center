@@ -6,6 +6,25 @@ import { PolygonLayer, PathLayer, PointCloudLayer, ScatterplotLayer } from '@dec
 // Integration of streetscape.gl components
 import { PlaybackControl } from 'streetscape.gl';
 
+class ErrorBoundary extends React.Component<any, { hasError: boolean, errorMsg: string }> {
+  constructor(props: any) {
+    super(props);
+    this.state = { hasError: false, errorMsg: '' };
+  }
+  static getDerivedStateFromError(error: any) {
+    return { hasError: true, errorMsg: error.toString() };
+  }
+  componentDidCatch(error: any, errorInfo: any) {
+    console.error("PlaybackControl crashed:", error);
+  }
+  render() {
+    if (this.state.hasError) {
+      return <div style={{ color: 'red', fontSize: '10px' }}>[STREETSCAPE COMPONENT FAILED TO RENDER: {this.state.errorMsg}]</div>;
+    }
+    return this.props.children;
+  }
+}
+
 // --- XVIZ SPATIAL TELEMETRY GENERATOR ---
 const generateSAFeFlows = () => {
   const flows = [];
@@ -189,15 +208,17 @@ export const SemanticGraph = () => {
         <div style={{ background: '#111', border: '1px solid #333', padding: '10px', color: '#ccc', fontSize: '10px', textAlign: 'center', marginBottom: '5px' }}>
           XVIZ PLAYBACK STREAM
         </div>
-        <PlaybackControl
-          isPlaying={true}
-          timestamp={time}
-          startTime={0}
-          endTime={1000}
-          onPlay={() => {}}
-          onPause={() => {}}
-          onSeek={() => {}}
-        />
+        <ErrorBoundary>
+          <PlaybackControl
+            isPlaying={true}
+            timestamp={time}
+            startTime={0}
+            endTime={1000}
+            onPlay={() => {}}
+            onPause={() => {}}
+            onSeek={() => {}}
+          />
+        </ErrorBoundary>
       </div>
     </div>
   );
