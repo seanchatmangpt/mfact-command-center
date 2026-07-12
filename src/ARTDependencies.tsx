@@ -9,7 +9,7 @@ export function ARTDependencies() {
       <div className="bento-card card-span-2">
         <h3 className="card-title">Cross-ART Dependency Graph</h3>
         <div className="topology-visual" style={{ height: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-            {/* Mock network nodes for visuals */}
+            {/* Local network nodes for visuals */}
             <div style={{ position: 'absolute', top: '40px', left: '100px', padding: '10px', background: 'var(--bg-secondary)', border: '1px solid var(--accent-primary)', borderRadius: '8px' }}>Frontend ART</div>
             <div style={{ position: 'absolute', top: '120px', left: '400px', padding: '10px', background: 'var(--bg-secondary)', border: '1px solid var(--accent-secondary)', borderRadius: '8px' }}>Backend ART</div>
             <div style={{ position: 'absolute', top: '60px', left: '600px', padding: '10px', background: 'var(--bg-secondary)', border: '1px solid var(--accent-tertiary)', borderRadius: '8px' }}>Data ART</div>

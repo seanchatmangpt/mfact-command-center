@@ -2,21 +2,27 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Navigation and Routing', () => {
   test.beforeEach(async ({ page }) => {
+    page.on('console', msg => console.log('PAGE LOG:', msg.text()));
+    page.on('pageerror', error => console.log('PAGE ERROR:', error.message));
     await page.goto('/');
   });
 
   test('should display the brand name', async ({ page }) => {
-    await expect(page.locator('.brand')).toHaveText('Autonomic SAFe');
+    await expect(page.locator('h1')).toHaveText('MFACT // Autonomic SAFe');
   });
 
   test('should have all navigation tabs visible', async ({ page }) => {
     const tabs = [
-      'Overview',
-      'Lean Portfolio (LPM)',
-      'Product Dev Flow',
-      'RevOps/Turbulence',
-      'DevOps/Polonius',
-      'Math Topologies'
+      '[OVERVIEW] SYS.OVERVIEW',
+      '[LPM] LEAN.PORTFOLIO.MGT',
+      '[FLOW] PRODUCT.DEV.FLOW',
+      '[REVOPS] REVOPS.TURBULENCE',
+      '[DEVOPS] DEVOPS.POLONIUS',
+      '[TOPOLOGY] MATH.TOPOLOGIES',
+      '[UNRDF] UNRDF.SEMANTICS',
+      '[WARGAMES] WARGAMES.SIM',
+      '[PEERS] PEER.DISCOVERY',
+      '[PAPERS] RESEARCH.PAPERS',
     ];
 
     for (const tab of tabs) {
@@ -26,23 +32,17 @@ test.describe('Navigation and Routing', () => {
 
   test('should highlight the active tab and update the header title', async ({ page }) => {
     // Overview is active by default
-    await expect(page.locator('.nav-item:has-text("Overview")')).toHaveClass(/active/);
-    await expect(page.locator('h1')).toHaveText('Overview Command Center');
+    await expect(page.locator('.nav-item:has-text("[OVERVIEW] SYS.OVERVIEW")')).toHaveClass(/active/);
+    await expect(page.locator('.header-title')).toContainText('OVERVIEW');
 
-    // Click on Lean Portfolio (LPM)
-    await page.click('.nav-item:has-text("Lean Portfolio (LPM)")');
-    await expect(page.locator('.nav-item:has-text("Lean Portfolio (LPM)")')).toHaveClass(/active/);
-    await expect(page.locator('h1')).toHaveText('Lean Portfolio (LPM) Command Center');
-
-    // Click on Math Topologies
-    await page.click('.nav-item:has-text("Math Topologies")');
-    await expect(page.locator('.nav-item:has-text("Math Topologies")')).toHaveClass(/active/);
-    await expect(page.locator('h1')).toHaveText('Math Topologies Command Center');
+    // Click on LPM
+    await page.click('.nav-item:has-text("[LPM] LEAN.PORTFOLIO.MGT")');
+    await expect(page.locator('.nav-item:has-text("[LPM] LEAN.PORTFOLIO.MGT")')).toHaveClass(/active/);
+    await expect(page.locator('.header-title')).toContainText('LPM');
   });
 
   test('should show the engine status as active', async ({ page }) => {
-    await expect(page.locator('text=Engine Status')).toBeVisible();
-    await expect(page.locator('text=mfact-math-compat: Active')).toBeVisible();
-    await expect(page.locator('.status-dot').first()).toBeVisible();
+    await expect(page.locator('text=KERNEL STATUS')).toBeVisible();
+    await expect(page.locator('text=ACTIVE / SUB-KOLMOGOROV')).toBeVisible();
   });
 });

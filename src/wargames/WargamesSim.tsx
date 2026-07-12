@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useState } from 'react';
-import './MosaicMock';
+import './MosaicLocal';
 import AutonomicPlatform from './AutonomicPlatform.jsx';
 import { TenFourApp } from './TenFourApp.jsx';
 

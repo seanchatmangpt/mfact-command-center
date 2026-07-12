@@ -1,5 +1,7 @@
 import React from 'react';
 
+(window as any).React = React;
+
 (window as any).MosaicNative = {
   View: (props: any) => <div {...props} style={{ display: 'flex', flexDirection: 'column', ...props.style }} />,
   Text: (props: any) => <span {...props} />,
