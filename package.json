@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@deck.gl/layers": "^8.9.36",
-    "@rolldown/binding-darwin-arm64": "^1.1.5",
     "@types/three": "^0.185.1",
     "@xviz/parser": "^1.0.13",
     "deck.gl": "^8.9.36",
