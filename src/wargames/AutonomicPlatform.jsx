@@ -33,6 +33,7 @@ import React, {
   useMemo,
   useCallback,
 } from 'react';
+import { ResearchDirectory } from './ResearchDirectory';
 
 /* ============================================================================
  * 1. CONSTANTS & SEED DATA
@@ -58,7 +59,7 @@ export const PALETTE = {
 export const SCREENS = [
   'command', 'arena', 'deck', 'ops', 'agents', 'dod',
   'leaderboards', 'battlepass', 'prestige', 'talents',
-  'raids', 'cosmetics', 'guilds', 'roguelike',
+  'raids', 'cosmetics', 'guilds', 'roguelike', 'research'
 ];
 
 export const SCREEN_META = {
@@ -76,6 +77,7 @@ export const SCREEN_META = {
   cosmetics:    { title: 'LPM Budget',    tag: 'SHOP',      sub: 'Agent skins · card backs · globe themes' },
   guilds:       { title: 'Release Trains (ARTs)',            tag: 'GUILD',     sub: 'Roster · vault · guild wars · co-op quests' },
   roguelike:    { title: 'CI/CD Pipelines',       tag: 'ROGUE',     sub: 'Procedural campaigns · escalating modifiers · run stats' },
+  research:     { title: 'Multifractal Papers',   tag: 'GGEN',      sub: 'JSX exports of semantic paper ontologies' },
 };
 
 // Hub raw rows: [name, lng, lat, region, sector]
@@ -1107,6 +1109,7 @@ const SCREEN_COMPONENTS = {
   deck: DeckScreen,
   ops: OpsScreen,
   leaderboards: LeaderboardsScreen,
+  research: ResearchDirectory,
 };
 
 export function ScreenRouter() {
