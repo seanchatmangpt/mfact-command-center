@@ -39,19 +39,19 @@ import React, {
  * ==========================================================================*/
 
 export const PALETTE = {
-  bg: '#ffffff',
-  panel: 'transparent',
-  panel2: 'transparent',
-  line: '#cccccc',
-  line2: '#999999',
-  cyan: '#000000',
-  emerald: '#000000',
-  amber: '#000000',
-  magenta: '#000000',
-  violet: '#000000',
-  hi: '#000000',
-  mid: '#333333',
-  dim: '#666666',
+  bg: '#070c16',
+  panel: 'rgba(10, 16, 29, 0.75)',
+  panel2: 'rgba(15, 23, 42, 0.85)',
+  line: 'rgba(255, 255, 255, 0.1)',
+  line2: 'rgba(255, 255, 255, 0.05)',
+  cyan: '#33e1ff',
+  emerald: '#34e6a8',
+  amber: '#ffb13d',
+  magenta: '#ff4d72',
+  violet: '#a98bff',
+  hi: '#f1f5f9',
+  mid: '#94a3b8',
+  dim: '#475569',
 };
 
 // Ordered nav / keyboard-shortcut screen list (1–9,0 map to first ten).
@@ -63,19 +63,19 @@ export const SCREENS = [
 
 export const SCREEN_META = {
   command:      { title: 'Global Command',   tag: 'COMMAND',   sub: 'Live planetary operations · trade arcs · self-healing hubs' },
-  arena:        { title: 'Agent Arena',       tag: 'ARENA',     sub: '5v5 agent swarm vs disruption forces · real-time combat' },
-  deck:         { title: 'Model Deck',        tag: 'DECK',      sub: 'AutoML models as collectible cards · synergies & combos' },
-  ops:          { title: 'Operations',        tag: 'OPS',       sub: 'NPC operators · quests · incidents · achievements' },
-  agents:       { title: 'Agent Roster',      tag: 'AGENTS',    sub: '10 archetypes · talents · live telemetry' },
+  arena:        { title: 'PI Planning Arena',       tag: 'ARENA',     sub: '5v5 agent swarm vs disruption forces · real-time combat' },
+  deck:         { title: 'Strategic Themes',        tag: 'DECK',      sub: 'AutoML models as collectible cards · synergies & combos' },
+  ops:          { title: 'Value Streams',        tag: 'OPS',       sub: 'NPC operators · quests · incidents · achievements' },
+  agents:       { title: 'RTE Roster',      tag: 'AGENTS',    sub: '10 archetypes · talents · live telemetry' },
   dod:          { title: 'Definition of Done',tag: 'DoD',       sub: 'Task pipeline · DoD checklists · gating' },
   leaderboards: { title: 'Leaderboards',      tag: 'RANKED',    sub: 'Global ELO · per-agent · per-model · seasonal' },
-  battlepass:   { title: 'Battle Pass',       tag: 'SEASON',    sub: '100-tier track · daily & weekly challenges' },
-  prestige:     { title: 'Prestige',          tag: 'ASCEND',    sub: 'Reset to level 1 · 2x XP multiplier · prestige rank' },
-  talents:      { title: 'Talent Trees',      tag: 'TALENTS',   sub: 'Per-agent 9-talent unlock grids · loadouts' },
-  raids:        { title: 'Raid Bosses',       tag: 'RAID',      sub: 'World threats · 3-phase co-op · threat waveforms' },
-  cosmetics:    { title: 'Cosmetics Shop',    tag: 'SHOP',      sub: 'Agent skins · card backs · globe themes' },
-  guilds:       { title: 'Guilds',            tag: 'GUILD',     sub: 'Roster · vault · guild wars · co-op quests' },
-  roguelike:    { title: 'Endless Ops',       tag: 'ROGUE',     sub: 'Procedural campaigns · escalating modifiers · run stats' },
+  battlepass:   { title: 'PI Roadmap',       tag: 'SEASON',    sub: '100-tier track · daily & weekly challenges' },
+  prestige:     { title: 'Transformation',          tag: 'ASCEND',    sub: 'Reset to level 1 · 2x XP multiplier · prestige rank' },
+  talents:      { title: 'Capability Trees',      tag: 'TALENTS',   sub: 'Per-agent 9-talent unlock grids · loadouts' },
+  raids:        { title: 'Market Shocks',       tag: 'RAID',      sub: 'World threats · 3-phase co-op · threat waveforms' },
+  cosmetics:    { title: 'LPM Budget',    tag: 'SHOP',      sub: 'Agent skins · card backs · globe themes' },
+  guilds:       { title: 'Release Trains (ARTs)',            tag: 'GUILD',     sub: 'Roster · vault · guild wars · co-op quests' },
+  roguelike:    { title: 'CI/CD Pipelines',       tag: 'ROGUE',     sub: 'Procedural campaigns · escalating modifiers · run stats' },
 };
 
 // Hub raw rows: [name, lng, lat, region, sector]
@@ -196,10 +196,10 @@ export const NPC_DEF = [
 ];
 export const NPC_TASKS = ['Rebalancing 4 DCs', 'Retraining champion', 'Hunting fraud ring', 'Shedding 38MW', 'Patching BGP route', 'Negotiating freight', 'Scaling replicas', 'Drafting new model', 'Simulating shock', 'Auditing 1.1M auths'];
 export const QUEST_DEF = [
-  { id: 'q1', name: 'Operation Clean Sweep', kind: 'MAIN', desc: 'Resolve every disruption with zero human touch', goal: 12, reward: 'DATA EXTRACT' },
-  { id: 'q2', name: 'Sub-50ms Continent', kind: 'SIDE', desc: 'Hold APAC latency under 50ms for 1h', goal: 8, reward: 'DATA EXTRACT' },
-  { id: 'q3', name: 'Fraud Ring Bounty', kind: 'BOUNTY', desc: 'Quarantine 3 coordinated fraud rings', goal: 3, reward: 'DATA EXTRACT' },
-  { id: 'q4', name: 'Carbon-Negative Grid', kind: 'SIDE', desc: 'Route 80% load through renewables', goal: 10, reward: 'DATA EXTRACT' },
+  { id: 'q1', name: 'Operation Clean Sweep', kind: 'MAIN', desc: 'Resolve every disruption with zero human touch', goal: 12, reward: 'LOOT BOX' },
+  { id: 'q2', name: 'Sub-50ms Continent', kind: 'SIDE', desc: 'Hold APAC latency under 50ms for 1h', goal: 8, reward: 'LOOT BOX' },
+  { id: 'q3', name: 'Fraud Ring Bounty', kind: 'BOUNTY', desc: 'Quarantine 3 coordinated fraud rings', goal: 3, reward: 'LOOT BOX' },
+  { id: 'q4', name: 'Carbon-Negative Grid', kind: 'SIDE', desc: 'Route 80% load through renewables', goal: 10, reward: 'LOOT BOX' },
 ];
 export const QUEST_PROG_FRAC = [0.66, 0.5, 0.66, 0.4];
 export const ACHV_DEF = [
@@ -764,11 +764,11 @@ const sans = "'Space Grotesk', system-ui, sans-serif";
 
 export function Panel({ title, tag, right, children, style }) {
   return (
-    <section style={{ background: PALETTE.panel, border: "1px solid " + PALETTE.line + "", borderRadius: 0, padding: 16, color: PALETTE.hi, fontFamily: sans, ...style }}>
+    <section style={{ background: PALETTE.panel, border: "1px solid " + PALETTE.line + "", borderRadius: 8, padding: 16, color: PALETTE.hi, fontFamily: sans, ...style }}>
       {(title || right) && (
         <header style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
           {title && <h3 style={{ margin: 0, font: "600 13px " + sans + "", letterSpacing: 0.3 }}>{title}</h3>}
-          {tag && <span style={{ font: "500 9px " + mono + "", color: PALETTE.cyan, border: "1px solid " + PALETTE.line2 + "", borderRadius: 0, padding: '2px 6px' }}>{tag}</span>}
+          {tag && <span style={{ font: "500 9px " + mono + "", color: PALETTE.cyan, border: "1px solid " + PALETTE.line2 + "", borderRadius: 8, padding: '2px 6px' }}>{tag}</span>}
           <div style={{ flex: 1 }} />
           {right}
         </header>
@@ -780,7 +780,7 @@ export function Panel({ title, tag, right, children, style }) {
 
 export function StatChip({ label, value, unit, color = PALETTE.hi }) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 1, padding: '5px 13px', borderRadius: 0, background: PALETTE.panel, border: "1px solid " + PALETTE.line + "", minWidth: 84 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 1, padding: '5px 13px', borderRadius: 8, background: PALETTE.panel, border: "1px solid " + PALETTE.line + "", minWidth: 84 }}>
       <span style={{ font: "400 8px " + mono + "", letterSpacing: 0.6, color: PALETTE.dim }}>{label}</span>
       <span style={{ font: "600 14px " + mono + "", color, lineHeight: 1 }}>
         {value}
@@ -792,8 +792,8 @@ export function StatChip({ label, value, unit, color = PALETTE.hi }) {
 
 export function ProgressBar({ pct, from, to, height = 4, width = 150 }) {
   return (
-    <div style={{ width, height, borderRadius: 0, background: 'rgba(255,255,255,0.08)', overflow: 'hidden' }}>
-      <div style={{ height: '100%', width: pct, borderRadius: 0, background: 'transparent', boxShadow: 'none', transition: 'width .5s' }} />
+    <div style={{ width, height, borderRadius: 8, background: 'rgba(255,255,255,0.08)', overflow: 'hidden' }}>
+      <div style={{ height: '100%', width: pct, borderRadius: 8, background: PALETTE.panel, boxShadow: '0 4px 12px rgba(0,0,0,0.5)', transition: 'width .5s' }} />
     </div>
   );
 }
@@ -802,7 +802,7 @@ export function ProgressBar({ pct, from, to, height = 4, width = 150 }) {
 export function NavRail() {
   const { screen, setScreen } = useScreen();
   return (
-    <aside style={{ width: 78, flex: '0 0 78px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px 0 14px', borderRight: '1px solid ' + PALETTE.line, background: 'transparent' }}>
+    <aside style={{ width: 78, flex: '0 0 78px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '16px 0 14px', borderRight: '1px solid ' + PALETTE.line, background: PALETTE.panel }}>
       <nav style={{ marginTop: 26, display: 'flex', flexDirection: 'column', gap: 10, width: '100%', alignItems: 'center', flex: 1 }}>
         {SCREENS.map((s) => (
           <button
@@ -810,14 +810,14 @@ export function NavRail() {
             onClick={() => setScreen(s)}
             title={SCREEN_META[s].title}
             style={{
-              position: 'relative', width: 52, height: 52, border: 'none', borderRadius: 0, cursor: 'pointer',
+              position: 'relative', width: 52, height: 52, border: 'none', borderRadius: 8, cursor: 'pointer',
               background: screen === s ? 'rgba(51,225,255,0.14)' : 'transparent',
               color: screen === s ? PALETTE.cyan : PALETTE.dim,
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3, transition: 'all .18s',
             }}
           >
             <span style={{ font: '600 7px ' + mono, letterSpacing: 0.5 }}>{SCREEN_META[s].tag}</span>
-            {screen === s && <span style={{ position: 'absolute', left: -1, top: '50%', transform: 'translateY(-50%)', width: 3, height: 24, borderRadius: 0, background: PALETTE.cyan, boxShadow: 'none' }} />}
+            {screen === s && <span style={{ position: 'absolute', left: -1, top: '50%', transform: 'translateY(-50%)', width: 3, height: 24, borderRadius: 8, background: PALETTE.cyan, boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }} />}
           </button>
         ))}
       </nav>
@@ -841,7 +841,7 @@ export function TopBar() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 200 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
           <span style={{ font: "600 15px " + sans + "" }}>{meta.title}</span>
-          <span style={{ font: "500 9px " + mono + "", color: PALETTE.cyan, border: "1px solid " + PALETTE.line2 + "", borderRadius: 0, padding: '2px 6px' }}>{meta.tag}</span>
+          <span style={{ font: "500 9px " + mono + "", color: PALETTE.cyan, border: "1px solid " + PALETTE.line2 + "", borderRadius: 8, padding: '2px 6px' }}>{meta.tag}</span>
         </div>
         <span style={{ font: "400 10px " + mono + "", color: PALETTE.dim }}>{meta.sub}</span>
       </div>
@@ -860,9 +860,9 @@ export function MetaHud() {
   const { state } = useGame();
   const { xpPct, xpText } = useDerived();
   return (
-    <div style={{ height: 40, flex: '0 0 40px', display: 'flex', alignItems: 'center', gap: 16, padding: '0 22px', borderBottom: "1px solid " + PALETTE.line + "", background: 'transparent' }}>
+    <div style={{ height: 40, flex: '0 0 40px', display: 'flex', alignItems: 'center', gap: 16, padding: '0 22px', borderBottom: "1px solid " + PALETTE.line + "", background: PALETTE.panel }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: 0, background: 'transparent', font: "700 12px " + mono + "", color: '#0a0714', boxShadow: 'none' }}>{state.level}</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: 8, background: PALETTE.panel, font: "700 12px " + mono + "", color: '#0a0714', boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>{state.level}</div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
           <span style={{ font: "600 8px " + mono + "", letterSpacing: 0.8, color: PALETTE.dim }}>PLATFORM LVL · {xpText}</span>
           <ProgressBar pct={xpPct} from={PALETTE.violet} to={PALETTE.cyan} />
@@ -870,18 +870,18 @@ export function MetaHud() {
       </div>
       <div style={{ width: 1, height: 22, background: PALETTE.line }} />
       <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
-        <span style={{ font: "600 9px " + mono + "", letterSpacing: 0.8, color: PALETTE.amber, border: '1px solid rgba(255,177,61,0.35)', borderRadius: 0, padding: '2px 7px' }}>SEASON {state.season} · {state.tier}</span>
+        <span style={{ font: "600 9px " + mono + "", letterSpacing: 0.8, color: PALETTE.amber, border: '1px solid rgba(255,177,61,0.35)', borderRadius: 8, padding: '2px 7px' }}>SEASON {state.season} · {state.tier}</span>
         <ProgressBar pct={"" + state.tierPct + "%"} from={PALETTE.amber} to="#ffe08a" width={120} />
       </div>
       <div style={{ flex: 1 }} />
-      <div style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '4px 11px', borderRadius: 0, background: 'rgba(255,77,114,0.08)', border: '1px solid rgba(255,77,114,0.25)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '4px 11px', borderRadius: 8, background: 'rgba(255,77,114,0.08)', border: '1px solid rgba(255,77,114,0.25)' }}>
         <span style={{ fontSize: 13, lineHeight: 1 }}>🔥</span>
         <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
           <span style={{ font: "700 13px " + mono + "", color: PALETTE.magenta }}>{state.streak}</span>
           <span style={{ font: "500 7px " + mono + "", letterSpacing: 0.5, color: PALETTE.dim }}>DAY ZERO-TOUCH STREAK</span>
         </div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '4px 11px', borderRadius: 0, background: 'rgba(51,225,255,0.08)', border: '1px solid rgba(51,225,255,0.25)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '4px 11px', borderRadius: 8, background: 'rgba(51,225,255,0.08)', border: '1px solid rgba(51,225,255,0.25)' }}>
         <span style={{ font: "700 13px " + mono + "", color: PALETTE.cyan }}>{state.eloRating}</span>
         <span style={{ font: "500 7px " + mono + "", letterSpacing: 0.5, color: PALETTE.dim }}>ELO · P{state.prestige}</span>
       </div>
@@ -893,7 +893,7 @@ export function CelebrationBanner() {
   const { state } = useGame();
   if (!state.celebrate) return null;
   return (
-    <div style={{ position: 'fixed', top: 110, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 28px', borderRadius: 0, background: 'transparent', color: '#06121f', font: "700 16px " + mono + "", letterSpacing: 1, boxShadow: 'none' }}>
+    <div style={{ position: 'fixed', top: 110, left: '50%', transform: 'translateX(-50%)', zIndex: 100, padding: '12px 28px', borderRadius: 8, background: PALETTE.panel, color: '#06121f', font: "700 16px " + mono + "", letterSpacing: 1, boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>
       ✦ {state.celebrate.text}
     </div>
   );
@@ -971,7 +971,7 @@ export function ArenaScreen() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             {state.blue.map((a) => (
               <div key={a.id} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: a.c, boxShadow: 'none'}} />
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: a.c, boxShadow: '0 4px 12px rgba(0,0,0,0.5)'}} />
                 <span style={{ flex: 1, font: "600 11px " + mono + "", color: PALETTE.hi }}>{a.name}</span>
                 <span style={{ font: "500 10px " + mono + "", color: PALETTE.dim }}>{a.k}/{a.d}/{a.a}</span>
               </div>
@@ -1002,7 +1002,7 @@ export function DeckScreen() {
         {state.cards.map((c) => {
           const r = RARITY[c.rarity];
           return (
-            <article key={c.name} style={{ border: "1px solid " + r.c, borderRadius: 0, padding: 14, background: PALETTE.panel2, boxShadow: 'none' }}>
+            <article key={c.name} style={{ border: "1px solid " + r.c, borderRadius: 8, padding: 14, background: PALETTE.panel2, boxShadow: '0 4px 12px rgba(0,0,0,0.5)' }}>
               <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                 <span style={{ font: "700 13px " + sans + "", color: PALETTE.hi }}>{c.name}</span>
                 <span style={{ font: "600 8px " + mono + "", color: r.c }}>{r.label}</span>
@@ -1015,7 +1015,7 @@ export function DeckScreen() {
                 <span style={{ color: PALETTE.amber, marginLeft: 'auto' }}>⬡ {c.deployCount}</span>
               </footer>
               <div style={{ display: 'flex', gap: 5, marginTop: 8, flexWrap: 'wrap' }}>
-                {c.synergies.map((s) => <span key={s} style={{ font: "500 8px " + mono + "", color: PALETTE.violet, border: '1px solid rgba(169,139,255,0.35)', borderRadius: 0, padding: '1px 5px' }}>{s}</span>)}
+                {c.synergies.map((s) => <span key={s} style={{ font: "500 8px " + mono + "", color: PALETTE.violet, border: '1px solid rgba(169,139,255,0.35)', borderRadius: 8, padding: '1px 5px' }}>{s}</span>)}
               </div>
             </article>
           );
@@ -1033,7 +1033,7 @@ export function OpsScreen() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
           {state.npcs.map((n) => (
             <div key={n.id} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{ width: 32, height: 32, borderRadius: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', font: "700 13px " + mono + "", color: '#06121f', background: n.c }}>{n.id}</div>
+              <div style={{ width: 32, height: 32, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', font: "700 13px " + mono + "", color: '#06121f', background: n.c }}>{n.id}</div>
               <div style={{ flex: 1 }}>
                 <div style={{ font: "600 12px " + sans + "", color: PALETTE.hi }}>{n.name} <span style={{ color: PALETTE.dim, fontWeight: 400, fontSize: 10 }}>LV{n.lvl}</span></div>
                 <div style={{ font: "400 10px " + mono + "", color: PALETTE.mid }}>{n.task}</div>

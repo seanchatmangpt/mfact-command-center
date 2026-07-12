@@ -16,12 +16,12 @@ const { useState, useEffect, useMemo } = React;
 
 /* ============================================================= THEME ======= */
 const C = {
-  bg: '#ffffff', surface: '#ffffff', surfaceAlt: '#ffffff', surface3: '#ffffff',
-  line: '#000000', line2: '#000000',
-  text: '#000000', dim: '#333333', faint: '#666666',
-  amber: '#000000', green: '#000000', red: '#000000',
-  blue: '#000000', violet: '#000000', cyan: '#000000',
-  pink: '#000000', orange: '#000000', teal: '#000000',
+  bg: '#050a14', surface: '#0d1627', surfaceAlt: '#142036', surface3: '#1a2b47',
+  line: 'rgba(255,255,255,0.06)', line2: 'rgba(255,255,255,0.12)',
+  text: '#ffffff', dim: '#94a3b8', faint: '#475569',
+  amber: '#ffb13d', green: '#34e6a8', red: '#ff4d72',
+  blue: '#33e1ff', violet: '#a98bff', cyan: '#00d9ff',
+  pink: '#ff6ad5', orange: '#ff8a3d', teal: '#2ee6b9',
 };
 
 const statusColor = (st) => ({
@@ -101,8 +101,8 @@ function HorizBar({ label, value, pct: p, color }) {
         <Text style={s.metaSm}>{label}</Text>
         <Text style={[s.metaSm, { color }]}>{value}</Text>
       </View>
-      <View style={{ height: 5, borderRadius: 0, backgroundColor: C.surfaceAlt }}>
-        <View style={{ height: 5, borderRadius: 0, width: clamp(p, 0, 100) + '%', backgroundColor: color }} />
+      <View style={{ height: 5, borderRadius: 8, backgroundColor: C.surfaceAlt }}>
+        <View style={{ height: 5, borderRadius: 8, width: clamp(p, 0, 100) + '%', backgroundColor: color }} />
       </View>
     </View>
   );
@@ -113,14 +113,14 @@ function SparkBars({ values, color, height: ht }) {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, height: h }}>
       {values.map((v, i) => (
-        <View key={i} style={{ flex: 1, height: Math.max(3, (v / max) * h), backgroundColor: color || C.amber, borderRadius: 0, opacity: 0.38 + (i / (values.length - 1)) * 0.62 }} />
+        <View key={i} style={{ flex: 1, height: Math.max(3, (v / max) * h), backgroundColor: color || C.amber, borderRadius: 8, opacity: 0.38 + (i / (values.length - 1)) * 0.62 }} />
       ))}
     </View>
   );
 }
 function Tag({ label, color }) {
   return (
-    <View style={{ backgroundColor: C.surfaceAlt, borderRadius: 0, paddingHorizontal: 7, paddingVertical: 3, borderWidth: 1, borderColor: C.line }}>
+    <View style={{ backgroundColor: C.surfaceAlt, borderRadius: 8, paddingHorizontal: 7, paddingVertical: 3, borderWidth: 1, borderColor: C.line }}>
       <Text style={{ color: color || C.faint, fontSize: 9, fontWeight: '700', letterSpacing: 0.4 }}>{label}</Text>
     </View>
   );
@@ -760,7 +760,7 @@ function ShiftBoardScreen() {
           <Card key={d.id} style={{ marginBottom: 8 }}>
             <View style={s.rowBetween}>
               <View style={s.rowCenter}>
-                <View style={[s.avatar, { backgroundColor: statusColor(d.status), width: 32, height: 32, borderRadius: 0 }]}>
+                <View style={[s.avatar, { backgroundColor: statusColor(d.status), width: 32, height: 32, borderRadius: 8 }]}>
                   <Text style={[s.avatarTxt, { fontSize: 11 }]}>{d.name.split(' ').map((n) => n[0]).join('')}</Text>
                 </View>
                 <View style={{ marginLeft: 10 }}>
@@ -804,7 +804,7 @@ function YardScreen() {
       <Card>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 7 }}>
           {doors.map((d) => (
-            <Pressable key={d.number} onPress={() => {}} style={{ width: 46, height: 46, borderRadius: 0, backgroundColor: C.surfaceAlt, borderWidth: 2, borderColor: doorColor(d.status), alignItems: 'center', justifyContent: 'center' }}>
+            <Pressable key={d.number} onPress={() => {}} style={{ width: 46, height: 46, borderRadius: 8, backgroundColor: C.surfaceAlt, borderWidth: 2, borderColor: doorColor(d.status), alignItems: 'center', justifyContent: 'center' }}>
               <Text style={{ color: doorColor(d.status), fontSize: 13, fontWeight: '800' }}>{d.number}</Text>
               <Text style={{ color: C.faint, fontSize: 7, fontWeight: '700', letterSpacing: 0.3 }}>{d.status.slice(0, 4).toUpperCase()}</Text>
             </Pressable>
@@ -813,7 +813,7 @@ function YardScreen() {
         <View style={[s.rowCenter, { marginTop: 12, gap: 14, flexWrap: 'wrap' }]}>
           {[['loading', C.amber], ['sealed', C.blue], ['loaded', C.green], ['empty', C.faint]].map(([st, co]) => (
             <View key={st} style={s.rowCenter}>
-              <View style={{ width: 8, height: 8, borderRadius: 0, backgroundColor: co, marginRight: 4 }} />
+              <View style={{ width: 8, height: 8, borderRadius: 8, backgroundColor: co, marginRight: 4 }} />
               <Text style={s.miniLabel}>{st}</Text>
             </View>
           ))}
@@ -964,12 +964,12 @@ function ScheduleScreen() {
           </View>
           <View style={{ marginTop: 10, flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
             {sh.drivers.map((d) => (
-              <View key={d} style={{ backgroundColor: C.surfaceAlt, borderRadius: 0, paddingHorizontal: 10, paddingVertical: 5 }}>
+              <View key={d} style={{ backgroundColor: C.surfaceAlt, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 5 }}>
                 <Text style={{ color: C.text, fontSize: 11, fontWeight: '600' }}>{d}</Text>
               </View>
             ))}
             {Array.from({ length: sh.open }).map((_, i) => (
-              <View key={'open-' + i} style={{ borderWidth: 1, borderColor: C.red, borderStyle: 'dashed', borderRadius: 0, paddingHorizontal: 10, paddingVertical: 5 }}>
+              <View key={'open-' + i} style={{ borderWidth: 1, borderColor: C.red, borderStyle: 'dashed', borderRadius: 8, paddingHorizontal: 10, paddingVertical: 5 }}>
                 <Text style={{ color: C.red, fontSize: 11, fontWeight: '600' }}>OPEN SLOT</Text>
               </View>
             ))}
@@ -1011,7 +1011,7 @@ function CommsScreen() {
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ padding: 16, paddingBottom: 8 }} showsVerticalScrollIndicator={false}>
         {messages.map((m, i) => (
           <View key={i} style={{ marginBottom: 10, alignItems: m.type === 'out' ? 'flex-end' : 'flex-start' }}>
-            <View style={{ backgroundColor: m.type === 'sys' ? C.surfaceAlt : m.type === 'out' ? C.amber : C.surface3, borderRadius: 0, borderBottomLeftRadius: m.type === 'in' ? 3 : 12, borderBottomRightRadius: m.type === 'out' ? 3 : 12, padding: 10, maxWidth: '82%', borderWidth: 1, borderColor: m.type === 'sys' ? C.line : 'transparent' }}>
+            <View style={{ backgroundColor: m.type === 'sys' ? C.surfaceAlt : m.type === 'out' ? C.amber : C.surface3, borderRadius: 8, borderBottomLeftRadius: m.type === 'in' ? 3 : 12, borderBottomRightRadius: m.type === 'out' ? 3 : 12, padding: 10, maxWidth: '82%', borderWidth: 1, borderColor: m.type === 'sys' ? C.line : 'transparent' }}>
               {m.type !== 'out' && <Text style={{ color: m.type === 'sys' ? C.blue : C.dim, fontSize: 10, fontWeight: '700', marginBottom: 3 }}>{m.from}</Text>}
               <Text style={{ color: m.type === 'out' ? C.bg : C.text, fontSize: 13, fontWeight: '500', lineHeight: 18 }}>{m.text}</Text>
             </View>
@@ -1021,14 +1021,14 @@ function CommsScreen() {
         <SectionLabel>Quick Macros</SectionLabel>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6, marginBottom: 4 }}>
           {macros.map((m) => (
-            <Pressable key={m} onPress={() => setMsg(m)} style={{ backgroundColor: C.surfaceAlt, borderRadius: 0, paddingHorizontal: 12, paddingVertical: 6, borderWidth: 1, borderColor: C.line }}>
+            <Pressable key={m} onPress={() => setMsg(m)} style={{ backgroundColor: C.surfaceAlt, borderRadius: 8, paddingHorizontal: 12, paddingVertical: 6, borderWidth: 1, borderColor: C.line }}>
               <Text style={{ color: C.dim, fontSize: 11, fontWeight: '600' }}>{m}</Text>
             </Pressable>
           ))}
         </View>
       </ScrollView>
       <View style={{ padding: 12, borderTopWidth: 1, borderTopColor: C.line, gap: 8 }}>
-        <TextInput value={msg} onChangeText={setMsg} placeholder="Broadcast to all on shift…" placeholderTextColor={C.faint} style={{ backgroundColor: C.surfaceAlt, borderRadius: 0, padding: 12, color: C.text, fontSize: 13, borderWidth: 1, borderColor: C.line }} />
+        <TextInput value={msg} onChangeText={setMsg} placeholder="Broadcast to all on shift…" placeholderTextColor={C.faint} style={{ backgroundColor: C.surfaceAlt, borderRadius: 8, padding: 12, color: C.text, fontSize: 13, borderWidth: 1, borderColor: C.line }} />
         <Btn label="Broadcast to shift" kind="primary" pending={broadcast.pending} onPress={() => { if (msg.trim()) { broadcast.call({ message: msg, shift: '2nd' }); setMsg(''); } }} />
       </View>
     </View>
@@ -1159,8 +1159,8 @@ function AutoMLScreen() {
               {j.leaderboard.map((score, i) => (
                 <View key={i} style={[s.rowCenter, { gap: 8 }]}>
                   <Text style={[s.miniLabel, { width: 18, color: C.faint }]}>#{i + 1}</Text>
-                  <View style={{ flex: 1, height: 4, borderRadius: 0, backgroundColor: C.surfaceAlt }}>
-                    <View style={{ height: 4, borderRadius: 0, width: ((score - 88) / 10 * 100) + '%', backgroundColor: i === 0 ? C.green : C.dim + '80' }} />
+                  <View style={{ flex: 1, height: 4, borderRadius: 8, backgroundColor: C.surfaceAlt }}>
+                    <View style={{ height: 4, borderRadius: 8, width: ((score - 88) / 10 * 100) + '%', backgroundColor: i === 0 ? C.green : C.dim + '80' }} />
                   </View>
                   <Text style={[s.miniLabel, { color: i === 0 ? C.green : C.faint, width: 38, textAlign: 'right' }]}>{score}%</Text>
                 </View>
@@ -1294,8 +1294,8 @@ function FeaturesScreen() {
               <Text style={s.metaSm}>{g.freshness}</Text>
             </View>
             <View style={[s.rowCenter, { marginTop: 8, gap: 8 }]}>
-              <View style={{ flex: 1, height: 5, borderRadius: 0, backgroundColor: C.surfaceAlt }}>
-                <View style={{ height: 5, borderRadius: 0, width: clamp(g.drift * 600, 0, 100) + '%', backgroundColor: g.drift > 0.07 ? C.red : g.drift > 0.04 ? C.amber : C.green }} />
+              <View style={{ flex: 1, height: 5, borderRadius: 8, backgroundColor: C.surfaceAlt }}>
+                <View style={{ height: 5, borderRadius: 8, width: clamp(g.drift * 600, 0, 100) + '%', backgroundColor: g.drift > 0.07 ? C.red : g.drift > 0.04 ? C.amber : C.green }} />
               </View>
               <Text style={[s.miniLabel, { color: driftWarn ? C.red : C.faint, width: 52 }]}>ψ={g.drift.toFixed(3)}</Text>
             </View>
@@ -1310,8 +1310,8 @@ function FeaturesScreen() {
               <Text style={[s.metaSm, { flex: 1 }]}>{f.feature}</Text>
               <Text style={[s.miniLabel, { color: C.violet }]}>{f.imp.toFixed(3)}</Text>
             </View>
-            <View style={{ height: 4, borderRadius: 0, backgroundColor: C.surfaceAlt }}>
-              <View style={{ height: 4, borderRadius: 0, width: (f.imp / 0.15 * 100) + '%', backgroundColor: C.violet }} />
+            <View style={{ height: 4, borderRadius: 8, backgroundColor: C.surfaceAlt }}>
+              <View style={{ height: 4, borderRadius: 8, width: (f.imp / 0.15 * 100) + '%', backgroundColor: C.violet }} />
             </View>
             <Text style={[s.miniLabel, { marginTop: 2, color: C.faint }]}>{f.model}</Text>
           </View>
@@ -1377,8 +1377,8 @@ function AnomalyScreen() {
                     <Text style={s.metaSm}>{sh.f}</Text>
                     <Text style={[s.metaSm, { color: sh.v < 0 ? C.red : C.green }]}>{sh.v > 0 ? '+' : ''}{sh.v.toFixed(2)}</Text>
                   </View>
-                  <View style={{ height: 4, borderRadius: 0, backgroundColor: C.surfaceAlt }}>
-                    <View style={{ height: 4, borderRadius: 0, width: clamp(Math.abs(sh.v) / 0.7 * 100, 0, 100) + '%', backgroundColor: sh.v < 0 ? C.red : C.green }} />
+                  <View style={{ height: 4, borderRadius: 8, backgroundColor: C.surfaceAlt }}>
+                    <View style={{ height: 4, borderRadius: 8, width: clamp(Math.abs(sh.v) / 0.7 * 100, 0, 100) + '%', backgroundColor: sh.v < 0 ? C.red : C.green }} />
                   </View>
                 </View>
               ))}
@@ -2320,17 +2320,17 @@ function TenFourApp({ role }) {
 const s = StyleSheet.create({
   app: { flex: 1, backgroundColor: C.bg },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingTop: 56, paddingBottom: 12, borderBottomWidth: 1, backgroundColor: C.bg },
-  logo: { width: 40, height: 40, borderRadius: 0, alignItems: 'center', justifyContent: 'center' },
+  logo: { width: 40, height: 40, borderRadius: 8, alignItems: 'center', justifyContent: 'center' },
   logoTxt: { color: C.bg, fontWeight: '800', fontSize: 14, letterSpacing: 0.5 },
   headerTitle: { color: C.text, fontSize: 17, fontWeight: '700' },
   headerSub: { color: C.dim, fontSize: 12, marginTop: 1 },
-  rolePill: { borderWidth: 1.5, borderRadius: 0, paddingHorizontal: 9, paddingVertical: 5 },
+  rolePill: { borderWidth: 1.5, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 },
   rolePillTxt: { fontSize: 10, fontWeight: '800', letterSpacing: 0.8 },
 
   screen: { flex: 1, backgroundColor: C.bg },
   screenPad: { padding: 16, paddingBottom: 28 },
 
-  card: { backgroundColor: C.surface, borderRadius: 0, padding: 16, borderWidth: 1, borderColor: C.line },
+  card: { backgroundColor: C.surface, borderRadius: 8, padding: 16, borderWidth: 1, borderColor: C.line },
   cardTitle: { color: C.text, fontSize: 14, fontWeight: '700' },
   rowBetween: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   rowCenter: { flexDirection: 'row', alignItems: 'center' },
@@ -2346,28 +2346,28 @@ const s = StyleSheet.create({
   hosSub: { color: C.dim, fontSize: 12, marginBottom: 6 },
   warn: { color: C.red, fontSize: 12, marginTop: 10, fontWeight: '600' },
 
-  barTrack: { height: 8, borderRadius: 0, backgroundColor: C.surfaceAlt, overflow: 'hidden' },
-  barFill: { height: 8, borderRadius: 0 },
+  barTrack: { height: 8, borderRadius: 8, backgroundColor: C.surfaceAlt, overflow: 'hidden' },
+  barFill: { height: 8, borderRadius: 8 },
 
   section: { color: C.dim, fontSize: 11, fontWeight: '700', letterSpacing: 1.2, textTransform: 'uppercase' },
   sectionRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 22, marginBottom: 12 },
   sectionRight: { color: C.faint, fontSize: 12, fontWeight: '600' },
 
   btnRow: { flexDirection: 'row', gap: 10 },
-  btn: { borderRadius: 0, paddingVertical: 13, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center', borderWidth: 1 },
-  btnSm: { paddingVertical: 7, paddingHorizontal: 12, borderRadius: 0 },
+  btn: { borderRadius: 8, paddingVertical: 13, paddingHorizontal: 16, alignItems: 'center', justifyContent: 'center', borderWidth: 1 },
+  btnSm: { paddingVertical: 7, paddingHorizontal: 12, borderRadius: 8 },
   btnTxt: { fontSize: 14, fontWeight: '700' },
   btnSmTxt: { fontSize: 12 },
   note: { color: C.green, fontSize: 12, marginTop: 12, fontWeight: '600' },
 
-  tile: { flex: 1, backgroundColor: C.surfaceAlt, borderRadius: 0, padding: 12, borderWidth: 1, borderColor: C.line },
+  tile: { flex: 1, backgroundColor: C.surfaceAlt, borderRadius: 8, padding: 12, borderWidth: 1, borderColor: C.line },
   tileRow: { flexDirection: 'row', gap: 10, marginTop: 14 },
   tileVal: { fontSize: 20, fontWeight: '800' },
   tileSub: { color: C.dim, fontSize: 11, fontWeight: '600', marginTop: 1 },
   tileLabel: { color: C.faint, fontSize: 9, fontWeight: '700', letterSpacing: 0.9, marginTop: 3 },
 
   filterBar: { flexGrow: 0, paddingVertical: 12, borderBottomWidth: 1, borderBottomColor: C.line },
-  chip: { borderWidth: 1, borderRadius: 0, paddingHorizontal: 14, paddingVertical: 7 },
+  chip: { borderWidth: 1, borderRadius: 8, paddingHorizontal: 14, paddingVertical: 7 },
   chipTxt: { fontSize: 11, fontWeight: '700', letterSpacing: 0.5 },
 
   lane: { color: C.text, fontSize: 15, fontWeight: '700' },
@@ -2383,11 +2383,11 @@ const s = StyleSheet.create({
   nextStop: { color: C.dim, fontSize: 13, marginTop: 6, fontWeight: '500' },
   metaSm: { color: C.faint, fontSize: 12, fontWeight: '600' },
 
-  avatar: { width: 38, height: 38, borderRadius: 0, alignItems: 'center', justifyContent: 'center' },
+  avatar: { width: 38, height: 38, borderRadius: 8, alignItems: 'center', justifyContent: 'center' },
   avatarTxt: { color: C.bg, fontSize: 13, fontWeight: '800' },
   driverName: { color: C.text, fontSize: 15, fontWeight: '700' },
 
-  dot: { width: 9, height: 9, borderRadius: 0, marginRight: 6 },
+  dot: { width: 9, height: 9, borderRadius: 8, marginRight: 6 },
   agentName: { color: C.text, fontSize: 15, fontWeight: '700' },
   agentRole: { color: C.dim, fontSize: 12, marginTop: 4, fontWeight: '500' },
   agentsIntro: { color: C.dim, fontSize: 13, lineHeight: 19, marginBottom: 14, fontWeight: '500' },
@@ -2395,12 +2395,12 @@ const s = StyleSheet.create({
   empty: { padding: 40, alignItems: 'center' },
   emptyTxt: { color: C.faint, fontSize: 13, textAlign: 'center', fontWeight: '500' },
 
-  pill: { borderWidth: 1, borderRadius: 0, paddingHorizontal: 8, paddingVertical: 3 },
+  pill: { borderWidth: 1, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3 },
   pillTxt: { fontSize: 10, fontWeight: '800', letterSpacing: 0.5 },
 
   tabBar: { flexDirection: 'row', borderTopWidth: 1, backgroundColor: C.surface, paddingTop: 8, paddingBottom: 30 },
   tab: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 3, paddingTop: 4, position: 'relative' },
-  tabActive: { position: 'absolute', top: 0, left: 4, right: 4, bottom: 0, borderRadius: 0 },
+  tabActive: { position: 'absolute', top: 0, left: 4, right: 4, bottom: 0, borderRadius: 8 },
   tabIcon: { fontSize: 18 },
   tabLabel: { fontSize: 10, fontWeight: '700', letterSpacing: 0.2 },
 });
