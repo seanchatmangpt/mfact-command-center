@@ -10,11 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@deck.gl/layers": "^9.3.6",
+    "@deck.gl/layers": "^8.9.36",
     "@rolldown/binding-darwin-arm64": "^1.1.5",
     "@types/three": "^0.185.1",
     "@xviz/parser": "^1.0.13",
-    "deck.gl": "^9.3.6",
+    "deck.gl": "^8.9.36",
     "gh-pages": "^6.3.0",
     "n3": "^2.1.1",
     "react": "^19.2.7",
