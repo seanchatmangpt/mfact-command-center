@@ -1,0 +1,12 @@
+# Command-center evidence chain
+
+This reference is generated from `ontology/public/command-center-evidence.ttl`. It describes the admitted evidence objects; it does not grant standing or actuation authority.
+
+{% for row in sparql_results %}
+## {{ row.label }}
+
+{{ row.description }}
+
+Sequence: `{{ row.sequence }}`
+
+{% endfor %}
