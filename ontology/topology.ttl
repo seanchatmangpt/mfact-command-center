@@ -1,0 +1,8 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+cc:TopologyObservation a skos:Concept, sosa:ObservableProperty ;
+  skos:inScheme cc:Capability ;
+  skos:prefLabel "Topology Observation" .
+cc:TopologySample a sosa:Observation ; sosa:observedProperty cc:TopologyObservation .
