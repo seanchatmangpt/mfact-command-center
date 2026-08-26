@@ -1,0 +1,38 @@
+[project]
+name = "mfact-command-center"
+version = "26.8.26"
+description = "Ontology-driven command-center evidence reference"
+
+[ontology]
+source = "ontology/public/command-center-evidence.ttl"
+base_iri = "https://mfact.dev/command-center/"
+
+[ontology.prefixes]
+cc = "https://mfact.dev/command-center/"
+skos = "http://www.w3.org/2004/02/skos/core#"
+dcterms = "http://purl.org/dc/terms/"
+prov = "http://www.w3.org/ns/prov#"
+xsd = "http://www.w3.org/2001/XMLSchema#"
+
+[generation]
+output_dir = "."
+
+[[generation.rules]]
+name = "evidence-chain-reference"
+query = { inline = """
+PREFIX cc: <https://mfact.dev/command-center/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT ?label ?description ?sequence
+WHERE {
+  ?concept a skos:Concept ;
+           skos:inScheme cc:EvidenceChain ;
+           skos:prefLabel ?label ;
+           dcterms:description ?description ;
+           cc:sequence ?sequence .
+}
+ORDER BY ?sequence ?label
+""" }
+template = { file = "templates/docs/evidence-chain.md.tera" }
+output_file = "docs/reference/evidence-chain.md"
+mode = "Overwrite"
