@@ -1,0 +1,7 @@
+# MFACT Command Center — admitted capabilities
+
+Generated from the admitted RDF source. This projection is evidence only and carries no ambient actuation authority.
+
+{% for row in sparql_results -%}
+- **{{ row.title }}** — `{{ row.subject }}`
+{% endfor %}

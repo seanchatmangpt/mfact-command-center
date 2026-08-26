@@ -1,0 +1,9 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+cc:TelemetryObservation a sosa:Observation ;
+  sosa:observedProperty cc:CommandCenterState .
+cc:CommandCenterState a sosa:ObservableProperty .
+cc:observedAt a prov:Role .

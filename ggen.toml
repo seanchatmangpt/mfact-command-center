@@ -1,0 +1,29 @@
+[project]
+name = "mfact-command-center"
+version = "26.8.26"
+description = "Ontology-driven command-center evidence projection"
+
+[ontology]
+source = "ontology/command-center-core.ttl"
+base_iri = "https://seanchatmangpt.github.io/mfact-command-center/ontology#"
+
+[ontology.prefixes]
+cc = "https://seanchatmangpt.github.io/mfact-command-center/ontology#"
+dcterms = "http://purl.org/dc/terms/"
+prov = "http://www.w3.org/ns/prov#"
+skos = "http://www.w3.org/2004/02/skos/core#"
+
+[generation]
+output_dir = "."
+
+[[generation.rules]]
+name = "capability-evidence"
+query = { inline = """
+PREFIX dcterms: <http://purl.org/dc/terms/>
+SELECT ?subject ?title
+WHERE { ?subject dcterms:title ?title . }
+ORDER BY ?title
+""" }
+template = { file = "templates/capabilities.md.tera" }
+output_file = ".ggen/generated/capabilities.md"
+mode = "Overwrite"
