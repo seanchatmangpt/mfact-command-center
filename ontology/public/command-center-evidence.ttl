@@ -1,0 +1,48 @@
+@prefix cc: <https://mfact.dev/command-center/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+cc:EvidenceChain a skos:ConceptScheme ;
+  dcterms:title "mfact command-center evidence chain" ;
+  dcterms:description "Operator-facing evidence objects admitted from repository doctrine; presentation never manufactures standing." .
+
+cc:ExactSubject a skos:Concept ;
+  skos:inScheme cc:EvidenceChain ;
+  skos:prefLabel "Exact subject" ;
+  dcterms:description "The immutable subject identity against which verification is admitted." ;
+  cc:sequence 10 .
+
+cc:ProofObligation a skos:Concept ;
+  skos:inScheme cc:EvidenceChain ;
+  skos:prefLabel "Proof obligation" ;
+  dcterms:description "A bounded claim that must be discharged for the exact subject." ;
+  cc:sequence 20 .
+
+cc:ValidatorResult a skos:Concept ;
+  skos:inScheme cc:EvidenceChain ;
+  skos:prefLabel "Validator result" ;
+  dcterms:description "Evidence emitted by a named validator without ambient promotion authority." ;
+  cc:sequence 30 .
+
+cc:ExecutionReceipt a skos:Concept ;
+  skos:inScheme cc:EvidenceChain ;
+  skos:prefLabel "Execution receipt" ;
+  dcterms:description "Receipt binding subject, execution identity, consequence, and replay information." ;
+  cc:sequence 40 .
+
+cc:ScopedStanding a skos:Concept ;
+  skos:inScheme cc:EvidenceChain ;
+  skos:prefLabel "Scoped standing" ;
+  dcterms:description "A bounded standing decision whose ceiling is limited by the admitted evidence." ;
+  cc:sequence 50 .
+
+cc:ReplayOrRepair a skos:Concept ;
+  skos:inScheme cc:EvidenceChain ;
+  skos:prefLabel "Replay or repair" ;
+  dcterms:description "The next lawful transition: deterministic replay or repair of the failed evidence boundary." ;
+  cc:sequence 60 .
+
+cc:sequence a <http://www.w3.org/1999/02/22-rdf-syntax-ns#Property> ;
+  dcterms:description "Deterministic presentation order for evidence-chain concepts." .
