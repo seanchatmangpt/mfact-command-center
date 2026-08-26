@@ -1,0 +1,86 @@
+name: GGEN OCEL Crown
+
+on:
+  pull_request:
+    paths:
+      - 'ggen.toml'
+      - 'ontology/public/**'
+      - 'templates/**'
+      - 'docs/reference/**'
+      - '.github/workflows/ggen-ocel-crown.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GGEN_SHA: 88358691bd36c8736e391a5e5c50ad67c665cf97
+    steps:
+      - name: Checkout exact consumer head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Admit exact consumer identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}"
+
+      - name: Install nightly Rust
+        uses: dtolnay/rust-toolchain@nightly
+
+      - name: Materialize exact GGEN producer
+        uses: actions/checkout@v4
+        with:
+          repository: seanchatmangpt/ggen
+          ref: 88358691bd36c8736e391a5e5c50ad67c665cf97
+          path: .ggen-tool
+
+      - name: Admit exact GGEN identity
+        shell: bash
+        run: test "$(git -C .ggen-tool rev-parse HEAD)" = "$GGEN_SHA"
+
+      - name: Manufacture admitted evidence reference
+        shell: bash
+        run: |
+          set -euo pipefail
+          cargo +nightly run --manifest-path .ggen-tool/Cargo.toml -p ggen-cli-lib --bin ggen -- sync run
+          test -f .ggen-v2/receipt.json
+          test -s docs/reference/evidence-chain.md
+
+      - name: Observe generated consequence
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -F 'Exact subject' docs/reference/evidence-chain.md
+          grep -F 'Execution receipt' docs/reference/evidence-chain.md
+          grep -F 'Scoped standing' docs/reference/evidence-chain.md
+          grep -F 'Replay or repair' docs/reference/evidence-chain.md
+
+      - name: Prove deterministic replay
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha256sum docs/reference/evidence-chain.md > "$RUNNER_TEMP/before.sha256"
+          cargo +nightly run --manifest-path .ggen-tool/Cargo.toml -p ggen-cli-lib --bin ggen -- sync run
+          sha256sum docs/reference/evidence-chain.md > "$RUNNER_TEMP/after.sha256"
+          diff -u "$RUNNER_TEMP/before.sha256" "$RUNNER_TEMP/after.sha256"
+
+      - name: Receipt exact crown
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'standing=ALIVE\nconsumer_sha=%s\nggen_sha=%s\nreceipt_sha256=%s\n' \
+            "$(git rev-parse HEAD)" "$GGEN_SHA" \
+            "$(sha256sum .ggen-v2/receipt.json | cut -d' ' -f1)" \
+            | tee "$RUNNER_TEMP/ggen-ocel-crown.receipt"
+
+      - name: Refuse consequential external actuation
+        shell: bash
+        run: |
+          set -euo pipefail
+          test ! -e dist/published
