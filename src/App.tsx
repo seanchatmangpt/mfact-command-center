@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { Routes, Route, Link, useLocation, useNavigate, useParams, Navigate } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, useParams, Navigate } from 'react-router-dom';
 import './index.css';
 import { AutonomicSimulationManager } from './AutonomicSimulationManager';
 import { SemanticGraph } from './SemanticGraph';
@@ -22,7 +21,6 @@ const PaperViewer = () => {
 
 function App() {
   const location = useLocation();
-  const navigate = useNavigate();
   const activeTab = location.pathname.split('/')[1] || 'overview';
   const { isReady: isAtomVmReady, error: atomVmError } = useUnrdf();
 

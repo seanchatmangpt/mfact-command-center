@@ -14,7 +14,7 @@ class ErrorBoundary extends React.Component<any, { hasError: boolean, errorMsg: 
   static getDerivedStateFromError(error: any) {
     return { hasError: true, errorMsg: error.toString() };
   }
-  componentDidCatch(error: any, errorInfo: any) {
+  componentDidCatch(error: any, _errorInfo: any) {
     console.error("PlaybackControl crashed:", error);
   }
   render() {
@@ -80,7 +80,7 @@ const generatePointCloud = () => {
 
 export const SemanticGraph = () => {
   const [time, setTime] = useState(0);
-  const [dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const [_dimensions, setDimensions] = useState({ width: window.innerWidth, height: window.innerHeight });
 
   const safeFlows = useMemo(() => generateSAFeFlows(), []);
   const boundingBoxes = useMemo(() => generateBoundingBoxes(), []);
@@ -114,7 +114,7 @@ export const SemanticGraph = () => {
   const COLOR_NORMAL = [100, 100, 100, 255];
   const COLOR_THREAT_RED = [255, 0, 0, 255];
   const COLOR_THREAT_CYAN = [0, 255, 255, 255];
-  const COLOR_BG = [5, 5, 5, 255];
+
 
   const layers = [
     new PolygonLayer({

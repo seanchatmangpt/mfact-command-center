@@ -7,13 +7,13 @@
 
 const {
   View, Text, Pressable, ScrollView, FlatList, ActivityIndicator,
-  StyleSheet, TextInput, Switch,
+  StyleSheet, TextInput,
 } = window.MosaicNative;
 const {
-  SupabaseProvider, useAuth, useLiveQuery, useRpc, useEdgeFunction,
+  SupabaseProvider, useLiveQuery, useRpc, useEdgeFunction,
 } = window.MosaicData;
 import React from 'react';
-const { useState, useEffect, useMemo } = React;
+const { useState, useEffect } = React;
 
 /* ============================================================= THEME ======= */
 const C = {
@@ -272,7 +272,7 @@ function PayScreen({ driverId }) {
 function FleetScreen() {
   const health = useRpc('fleet_health');
   const { data: runs } = useLiveQuery('runs');
-  const { data: trucks } = useLiveQuery('trucks');
+  const { data: _trucks } = useLiveQuery('trucks');
   useEffect(() => { health.call(); }, []);
   const h = health.data;
   const active = (runs || []).filter((r) => r.status === 'rolling' || r.status === 'planned' || r.status === 'arrived');
@@ -727,7 +727,7 @@ function ShiftBoardScreen() {
   const { data: drivers } = useLiveQuery('drivers');
   const health = useRpc('shift_health');
   useEffect(() => { health.call({ shift: '2nd' }); }, []);
-  const h = health.data;
+  const _h = health.data;
   const onShift = (drivers || []).filter((d) => d.status !== 'off_duty');
   return (
     <ScrollView style={s.screen} contentContainerStyle={s.screenPad} showsVerticalScrollIndicator={false}>
@@ -1177,7 +1177,7 @@ function AutoMLScreen() {
 /* ================================================= ML OPS: ORCHESTRATE ===== */
 function OrchestrateScreen() {
   const orchestrate = useEdgeFunction('orchestrate');
-  const act = useEdgeFunction('agent-act');
+  const _act = useEdgeFunction('agent-act');
   const roster = [
     { id: 1, name: 'RouteBot', role: 'Route opt & rerouting', model: 'GPT-4o', protocol: 'MCP', status: 'active', acts_hr: 142, success: 98.2, p50: 320, tools: ['maps_api', 'weather', 'toll_data', 'hos_engine'] },
     { id: 2, name: 'DispatchAI', role: 'Load assignment & driver match', model: 'Claude 3.5 Sonnet', protocol: 'A2A', status: 'active', acts_hr: 88, success: 97.1, p50: 480, tools: ['load_board', 'driver_scores', 'rate_engine', 'book_load'] },
@@ -1639,7 +1639,7 @@ function HRScreen() {
 
 /* ======================================================= OWNER: INSURANCE === */
 function InsuranceScreen() {
-  const claimAct = useEdgeFunction('file-claim');
+  const _claimAct = useEdgeFunction('file-claim');
   const policies = [
     { name: 'Primary Liability', carrier: 'Great West Casualty', limit: '1M/2M CSL', premium_ann: 186000, expires: 'Aug 15, 2026' },
     { name: 'Cargo Insurance', carrier: 'Travelers Inland Marine', limit: '$250K/occurrence', premium_ann: 34200, expires: 'Aug 15, 2026' },

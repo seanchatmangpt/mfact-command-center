@@ -19,7 +19,7 @@ autoContent = autoContent.replace(/export const PALETTE = \{[\s\S]*?\};/, `expor
 };`);
 
 autoContent = autoContent.replace(/background:\s*'linear-gradient[^']*'/g, "background: 'transparent'");
-autoContent = autoContent.replace(/background:\s*\`linear-gradient[^`]*\`/g, "background: 'transparent'");
+autoContent = autoContent.replace(/background:\s*`linear-gradient[^`]*`/g, "background: 'transparent'");
 autoContent = autoContent.replace(/boxShadow:[^,}]+/g, "boxShadow: 'none'");
 autoContent = autoContent.replace(/borderRadius:\s*\d+/g, "borderRadius: 0");
 autoContent = autoContent.replace(/background:\s*`radial-gradient[^`]*`/g, "background: PALETTE.bg");

@@ -13,11 +13,12 @@ self.onmessage = async (e: MessageEvent) => {
       atomVmInstance = instance;
       self.postMessage({ type: 'INIT_SUCCESS' });
     } catch (err) {
+      console.warn("WASM init failed. Error:", err);
       self.postMessage({ type: 'INIT_ERROR', error: String(err) });
     }
   } else if (type === 'EXECUTE') {
     if (!atomVmInstance) {
-      self.postMessage({ type: 'EXECUTE_ERROR', error: 'AtomVM not initialized' });
+      self.postMessage({ type: 'EXECUTE_ERROR', error: 'WASM instance missing' });
       return;
     }
 
@@ -31,9 +32,10 @@ self.onmessage = async (e: MessageEvent) => {
       const payloadBytes = encoder.encode(payloadStr);
 
       // 2. Allocate memory in WASM
-      const ptr = exports.alloc(payloadBytes.length);
+      const ptr = exports.alloc(payloadBytes.length + 1);
       const mem = new Uint8Array(memory.buffer);
       mem.set(payloadBytes, ptr);
+      mem[ptr + payloadBytes.length] = 0; // null terminator
 
       // 3. Execute WASM function
       const resPtr = exports.execute(ptr, payloadBytes.length);
@@ -50,7 +52,7 @@ self.onmessage = async (e: MessageEvent) => {
       const resStr = decoder.decode(resBytes);
 
       // 5. Deallocate memory
-      exports.dealloc(ptr, payloadBytes.length);
+      exports.dealloc(ptr, payloadBytes.length + 1);
       exports.dealloc(resPtr, resLen + 1);
 
       // 6. Deserialize result

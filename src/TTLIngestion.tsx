@@ -1,4 +1,10 @@
 import React, { useState, useRef } from 'react';
+import { faker } from '@faker-js/faker';
+
+
+// MOCKED: Explicitly stating that this uses mock generation logic.
+faker.seed(12345);
+
 const createStreamParser = (...args: any[]) => {
   void args;
   return {

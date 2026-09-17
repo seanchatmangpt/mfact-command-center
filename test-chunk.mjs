@@ -3,7 +3,7 @@ const parser = new Parser();
 let count = 0;
 // n3 Parser does have addChunk method in version 1.x!
 try {
-    parser.parse('', (error, quad, prefixes) => {
+    parser.parse('', (error, quad, _prefixes) => {
         if (quad) count++;
         else console.log("Done", count);
     });

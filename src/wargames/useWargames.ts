@@ -72,6 +72,7 @@ export interface WargamesState {
   updateAgent: (id: string, agent: Partial<Agent>) => void;
   updateCard: (id: string, card: Partial<Card>) => void;
   recordToUnrdf: (executeTelemetry: (data: any) => Promise<any>) => Promise<void>;
+  initStream: () => void;
 }
 
 export const useWargames = create<WargamesState>((set, get) => ({
@@ -84,6 +85,26 @@ export const useWargames = create<WargamesState>((set, get) => ({
   updatePlayer: (id, player) => set((state) => ({ players: { ...state.players, [id]: { ...state.players[id], ...player } as Player } })),
   updateAgent: (id, agent) => set((state) => ({ agents: { ...state.agents, [id]: { ...state.agents[id], ...agent } as Agent } })),
   updateCard: (id, card) => set((state) => ({ cards: { ...state.cards, [id]: { ...state.cards[id], ...card } as Card } })),
+  initStream: () => {
+    const eventSource = new EventSource('http://localhost:8080/stream');
+    eventSource.onmessage = (event) => {
+      try {
+        const data = JSON.parse(event.data);
+        set((state) => {
+          const nextState = { ...state };
+          if (data.players) nextState.players = { ...state.players, ...data.players };
+          if (data.agents) nextState.agents = { ...state.agents, ...data.agents };
+          if (data.cards) nextState.cards = { ...state.cards, ...data.cards };
+          if (data.guilds) nextState.guilds = { ...state.guilds, ...data.guilds };
+          if (data.raidBosses) nextState.raidBosses = { ...state.raidBosses, ...data.raidBosses };
+          if (data.roguelikeCampaigns) nextState.roguelikeCampaigns = { ...state.roguelikeCampaigns, ...data.roguelikeCampaigns };
+          return nextState;
+        });
+      } catch (err) {
+        console.error('Failed to parse SSE data', err);
+      }
+    };
+  },
   recordToUnrdf: async (executeTelemetry) => {
     const state = get();
     // Map these directly to the unrdf semantic knowledge graph so that Wargames simulations are recorded as valid enterprise topologies.

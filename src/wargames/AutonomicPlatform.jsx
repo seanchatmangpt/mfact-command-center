@@ -34,7 +34,7 @@ import React, {
   useCallback,
 } from 'react';
 import { ResearchDirectory } from './ResearchDirectory';
-
+import { faker } from '@faker-js/faker';
 /* ============================================================================
  * 1. CONSTANTS & SEED DATA
  * ==========================================================================*/
@@ -260,7 +260,8 @@ export function createInitialState() {
     statuses: buildStatuses(hubs),
     routes: buildRoutes(hubs.length),
     metrics: { actions: 1284, models: 47, integrity: 99.2, threats: 3, thrpt: 4.8 },
-    feed: [],
+    // MOCKED: using faker
+    feed: Array.from({ length: 5 }, () => ({ id: faker.string.uuid(), text: faker.hacker.phrase(), agent: faker.person.firstName(), color: faker.color.rgb(), t: '2m 14s ago' })),
 
     // ---- meta / battle pass / prestige / cosmetics ----
     level: 47, xp: 6420, xpMax: 10000, season: 7, tier: 'PLATINUM',
@@ -272,11 +273,13 @@ export function createInitialState() {
 
     // ---- synergies & talents ----
     cardSynergies: {},
-    agentTalents: { 0: [0, 2, 4], 1: [1, 3], 2: [0, 1], 3: [4], 4: [] },
+    // MOCKED: using faker
+    agentTalents: { 0: [0, 2, 4], 1: [1, 3], 2: [0, 1], 3: [4], 4: [0, 1, 2, 3] },
 
     // ---- raids & waveforms ----
     activeRaid: null,
-    raidCosplayers: [],
+    // MOCKED: using faker
+    raidCosplayers: Array.from({length: 3}, () => faker.internet.username()),
     threatWaveform: { mag: 0.0, eta: 180, phase: 0 },
 
     // ---- roguelike campaign ----
@@ -315,7 +318,8 @@ export function createInitialState() {
     })),
     red: RED_DEF.map((r, i) => ({ ...r, hp: 40 + (i * 23) % 55 })),
     lanes: BLUE_DEF.map((a, i) => ({ name: a.lane, c: a.c, tower: 60 + (i * 13) % 40, push: (i % 2 ? 1 : -1) * (0.2 + (i % 3) * 0.1) })),
-    log: [],
+    // MOCKED: using faker
+    log: Array.from({length: 8}, () => ({ id: faker.string.uuid(), who: faker.person.firstName(), c: faker.color.rgb(), verb: 'neutralized', vc: faker.color.rgb(), target: faker.person.lastName(), win: true, t: 'now' })),
 
     // ---- quests / NPCs / cards ----
     quests: QUEST_DEF.map((q, i) => ({ ...q, prog: Math.max(1, Math.floor(q.goal * QUEST_PROG_FRAC[i])) })),
@@ -792,7 +796,7 @@ export function StatChip({ label, value, unit, color = PALETTE.hi }) {
   );
 }
 
-export function ProgressBar({ pct, from, to, height = 4, width = 150 }) {
+export function ProgressBar({ pct, _from, _to, height = 4, width = 150 }) {
   return (
     <div style={{ width, height, borderRadius: 8, background: 'rgba(255,255,255,0.08)', overflow: 'hidden' }}>
       <div style={{ height: '100%', width: pct, borderRadius: 8, background: PALETTE.panel, boxShadow: '0 4px 12px rgba(0,0,0,0.5)', transition: 'width .5s' }} />
@@ -839,7 +843,7 @@ export function TopBar() {
     { label: 'THRPT', value: state.metrics.thrpt, unit: 'M/s', color: PALETTE.cyan },
   ];
   return (
-    <header style={{ height: 62, flex: '0 0 62px', display: 'flex', alignItems: 'center', gap: 22, padding: '0 22px', borderBottom: '1px solid ' + PALETTE.line, background: 'rgba(7,12,22,0.6)', backdropFilter: 'blur(8px)' }}>
+    <header style={{ height: 62, flex: '0 0 62px', display: 'flex', alignItems: 'center', gap: 22, padding: '0 22px', borderBottom: '1px solid ' + PALETTE.line, background: 'rgba(7,12,22,0.6)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 200 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
           <span style={{ font: "600 15px " + sans + "" }}>{meta.title}</span>

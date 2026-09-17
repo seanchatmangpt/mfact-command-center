@@ -12,11 +12,13 @@
   },
   "dependencies": {
     "@deck.gl/layers": "^8.9.36",
+    "@faker-js/faker": "^10.5.0",
     "@types/three": "^0.185.1",
     "@xviz/parser": "^1.0.13",
     "deck.gl": "^8.9.36",
     "gh-pages": "^6.3.0",
     "n3": "^2.1.1",
+    "playwright": "^1.61.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-force-graph-3d": "^1.29.1",
@@ -30,12 +32,14 @@
     "@types/node": "^24.13.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@types/ws": "^8.18.1",
     "@vitejs/plugin-react": "^4.7.0",
     "oxlint": "^0.15.1",
     "typescript": "~6.0.2",
     "vite": "^5.4.14",
     "vite-plugin-node-polyfills": "^0.22.0",
     "vite-plugin-top-level-await": "^1.6.0",
-    "vite-plugin-wasm": "^3.6.0"
+    "vite-plugin-wasm": "^3.6.0",
+    "ws": "^8.21.0"
   }
 }
