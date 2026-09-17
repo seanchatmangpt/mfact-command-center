@@ -1,0 +1,7 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+cc:DevOpsEvidence a skos:Concept ; skos:inScheme cc:Capability ; skos:prefLabel "DevOps Evidence" .
+cc:BuildEvidence a prov:Entity ; prov:specializationOf cc:DevOpsEvidence .
+cc:VerificationEvidence a prov:Entity ; prov:specializationOf cc:DevOpsEvidence .

@@ -1,0 +1,7 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+cc:PeerPresence a sosa:ObservableProperty .
+cc:PeerDiscovery a sosa:Observation ; sosa:observedProperty cc:PeerPresence .
+cc:PeerDiscoveryReceipt a prov:Entity ; prov:wasGeneratedBy cc:PeerDiscovery .

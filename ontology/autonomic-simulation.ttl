@@ -1,0 +1,8 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+
+cc:AutonomicSimulation a prov:Activity .
+cc:SimulationParameter a prov:Entity .
+cc:SimulationObservation a sosa:Observation ; prov:wasGeneratedBy cc:AutonomicSimulation .
+cc:AutonomicSimulation prov:used cc:SimulationParameter .

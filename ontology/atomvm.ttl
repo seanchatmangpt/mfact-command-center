@@ -1,0 +1,7 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+cc:AtomVMRuntimeState a sosa:ObservableProperty .
+cc:AtomVMRuntimeObservation a sosa:Observation ; sosa:observedProperty cc:AtomVMRuntimeState .
+cc:AtomVMRuntimeReceipt a prov:Entity ; prov:wasGeneratedBy cc:AtomVMRuntimeObservation .

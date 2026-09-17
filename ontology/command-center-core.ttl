@@ -1,0 +1,11 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+cc:CommandCenter a prov:Entity ;
+  dcterms:title "MFACT Command Center" ;
+  dcterms:description "Admitted semantic command surface for the browser command center." .
+
+cc:Capability a skos:ConceptScheme ;
+  dcterms:title "MFACT Command Center capabilities" .

@@ -1,0 +1,8 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+
+cc:ObservationOnlyPolicy a odrl:Policy ;
+  odrl:prohibition [ a odrl:Prohibition ; odrl:action odrl:execute ] .
+cc:CommandCenterEvidence a prov:Entity ;
+  prov:qualifiedAttribution [ a prov:Attribution ; prov:hadRole cc:ObservationOnlyPolicy ] .

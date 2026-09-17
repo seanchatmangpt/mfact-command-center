@@ -1,0 +1,8 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+cc:WargameSimulation a prov:Activity, skos:Concept ;
+  skos:inScheme cc:Capability ;
+  skos:prefLabel "Bounded Wargame Simulation" .
+cc:SimulationResult a prov:Entity ; prov:wasGeneratedBy cc:WargameSimulation .

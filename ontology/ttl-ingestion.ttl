@@ -1,0 +1,8 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+
+cc:TTLIngestion a prov:Activity ;
+  prov:used cc:ExternalRDF ;
+  prov:generated cc:SemanticGraph .
+cc:ExternalRDF a dcat:Dataset .

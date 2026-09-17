@@ -1,0 +1,47 @@
+name: GGEN OCEL Crown
+on:
+  pull_request:
+    paths:
+      - 'ggen.toml'
+      - 'ontology/**'
+      - 'templates/**'
+      - '.github/workflows/ggen-ocel-crown.yml'
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      GGEN_SHA: 88358691bd36c8736e391a5e5c50ad67c665cf97
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Admit exact consumer
+        run: test "$(git rev-parse HEAD)" = "${{ github.event.pull_request.head.sha }}"
+      - uses: dtolnay/rust-toolchain@nightly
+      - uses: actions/checkout@v4
+        with:
+          repository: seanchatmangpt/ggen
+          ref: 88358691bd36c8736e391a5e5c50ad67c665cf97
+          path: .ggen-tool
+      - name: Admit exact producer
+        run: test "$(git -C .ggen-tool rev-parse HEAD)" = "$GGEN_SHA"
+      - name: Manufacture with canonical GGEN
+        run: |
+          set -euo pipefail
+          cargo +nightly run --manifest-path .ggen-tool/Cargo.toml -p ggen-cli-lib --bin ggen -- sync run
+          test -s .ggen-v2/receipt.json
+          test -s .ggen/generated/capabilities.md
+      - name: Observe consequence
+        run: grep -F 'MFACT Command Center' .ggen/generated/capabilities.md
+      - name: Prove deterministic replay
+        run: |
+          set -euo pipefail
+          sha256sum .ggen/generated/capabilities.md > "$RUNNER_TEMP/before"
+          cargo +nightly run --manifest-path .ggen-tool/Cargo.toml -p ggen-cli-lib --bin ggen -- sync run
+          sha256sum .ggen/generated/capabilities.md > "$RUNNER_TEMP/after"
+          diff -u "$RUNNER_TEMP/before" "$RUNNER_TEMP/after"
+      - name: Refuse consequential actuation
+        run: test ! -e .ggen/actuation

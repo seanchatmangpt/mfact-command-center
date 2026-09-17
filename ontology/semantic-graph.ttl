@@ -1,0 +1,8 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+cc:SemanticGraph a dcat:Dataset, skos:Concept ;
+  skos:inScheme cc:Capability ;
+  skos:prefLabel "Semantic Graph" .
+cc:GraphProjection a dcat:Distribution ; dcat:accessService cc:SemanticGraph .

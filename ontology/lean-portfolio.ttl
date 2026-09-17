@@ -1,0 +1,8 @@
+@prefix cc: <https://seanchatmangpt.github.io/mfact-command-center/ontology#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+cc:LeanPortfolioManagement a skos:Concept ;
+  skos:inScheme cc:Capability ;
+  skos:prefLabel "Lean Portfolio Management" ;
+  dcterms:description "Portfolio-level planning and evidence navigation surface." .
